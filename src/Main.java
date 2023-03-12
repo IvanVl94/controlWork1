@@ -1,15 +1,11 @@
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class Main {
+    private static Employee[] employee = new Employee[10];
     public static void main(String[] args) {
         int id = 0;
         for (int i = 0; i < 10; i++) {
             id = id + 1;
         }
 
-
-        Employee[] employee = new Employee[10];
         employee[0] = new Employee("Сидоров Иван Петрович", 1, 45673);
         employee[1] = new Employee("Машунина Ирина Олеговна", 4, 32754);
         employee[2] = new Employee("Егорушин Андрей Александрович", 3, 22450);
@@ -21,45 +17,61 @@ public class Main {
         employee[8] = new Employee("Мезей Анна Ивановна", 2, 60754);
         employee[9] = new Employee("Кобанов Сергей Викторович", 5, 80000);
 
+        write(employee);
+
+        System.out.println("Сумма затрат за месяц " + sumSalary(employee) + " рублей");
+
+        System.out.println("Максимальная выплата у сотрудника : " + maximumSalary(employee) + " рублей" );
+
+        System.out.println("Минимальная зарплата у сотрудника : " + minimumSalary(employee) + " рублей " );
+
+        System.out.println("Средняя выплата составляет " + mediumSalary(employee));
+
+        writeFio(employee);
+    }
+
+    public static void write(Employee[] employee){
         for (int i = 0; i < employee.length; i++) {
             System.out.println(employee[i]);
         }
-
+    }
+    public static double sumSalary (Employee[] employee){
         double total = 0;
         for (int i = 0; i < employee.length; i++) {
             total += employee[i].getSalary();
         }
-        System.out.println("Сумма затрат за месяц " + total);
+        return total;
+    }
 
-        double max = -1;
-        String fio = null;
+    private static Employee maximumSalary (Employee[] employee) {
+        Employee result = employee[0];
         for (int i = 0; i < employee.length; i++) {
-            if (employee[i].getSalary() > max) {
-                max = employee[i].getSalary();
-                fio = employee[i].getFio();
+            if (result.getSalary() < employee[i].getSalary()) {
+                result = employee[i];
             }
         }
-        System.out.println("Максимальная выплата у сотрудника " + fio + " " + max);
+        return result;
+    }
 
-        double min = 80000;
+    private static Employee minimumSalary (Employee[] employee) {
+        Employee result = employee[0];
         for (int i = 0; i < employee.length; i++) {
-            if (employee[i].getSalary() < min) {
-                min = employee[i].getSalary();
-                fio = employee[i].getFio();
+            if (result.getSalary() > employee[i].getSalary()) {
+                result = employee[i];
             }
         }
-            System.out.println("Минимальная выплата сотруднику " + fio + " " + min);
-
-            double medium = total / employee.length;
-            System.out.println("Средняя выплата составляет " + medium);
-
-            Employee getFio = null;
-            for (int i = 0; i < employee.length; i++){
-                System.out.println(employee[i].getFio());
-            }
-
-
-        }
+        return result;
+    }
+    private static int mediumSalary (Employee[] employee){
+        double medium = sumSalary(employee)/employee.length;
+        return (int) medium;
+    }
+    private static void writeFio(Employee[] employee){
+    Employee getFio = null;
+    for (int i = 0; i < employee.length; i++){
+        System.out.println(employee[i].getFio());
+    }
+    }
 
     }
 

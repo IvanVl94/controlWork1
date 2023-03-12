@@ -3,14 +3,9 @@ public class Employee {
     private int department;
     private double salary;
     private int id;
+    private static int counter = 0;
 
-
-public static int counter;
-int getCounter = 0;
-
-
-
-    public Employee(String fio, int department, double salary) {
+    public Employee(String fio, int department, int salary) {
         this.id = ++counter;
         this.fio = fio;
         this.department = department;
@@ -37,12 +32,16 @@ int getCounter = 0;
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getCounter() {
+        return counter;
     }
 
     @Override
