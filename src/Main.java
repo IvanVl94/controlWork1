@@ -27,7 +27,7 @@ public class Main {
 
         System.out.println("Средняя выплата составляет " + mediumSalary(employee));
 
-        writeFio(employee);
+
     }
 
     public static void write(Employee[] employee){
@@ -62,9 +62,9 @@ public class Main {
         }
         return result;
     }
-    private static int mediumSalary (Employee[] employee){
+    private static double mediumSalary (Employee[] employee){
         double medium = sumSalary(employee)/employee.length;
-        return (int) medium;
+        return medium;
     }
     private static void writeFio(Employee[] employee){
     Employee getFio = null;
